@@ -1,7 +1,9 @@
-// import { getItem } from '../common/storage.js';
-// import { generateWeekRange } from '../common/time.utils.js';
-// import { renderEvents } from '../events/events.js';
-// import { createNumbersArray } from '../common/createNumbersArray.js';
+import { getItem } from "../common/storage.js";
+import { generateWeekRange } from "../common/time.utils.js";
+import { renderEvents } from "../events/events.js";
+import { createNumbersArray } from "../common/createNumbersArray.js";
+
+//import { generateWeekRange } from "../common/time.utils";
 
 const generateDay = () => {
     // функция должна сгенерировать и вернуть разметку дня в виде строки
@@ -9,9 +11,9 @@ const generateDay = () => {
     return createNumbersArray(1, 24)
         .map(
             (timeNumber) => `
-          <div 
-          class="calendar__time-slot" 
-          data-time="${timeNumber}"></div>`
+          <div
+          class="calendar__time-slot"
+          data-time="${timeNumber}">${timeNumber}</div>`
         )
         .join("");
 };
@@ -22,15 +24,16 @@ export const renderWeek = () => {
     // массив дней, которые нужно отобразить, считаем ф-цией generateWeekRange на основе displayedWeekStart из storage
     // каждый день должен содержать в дата атрибуте порядковый номер дня в месяце
     // после того, как отрисовали всю сетку для отображаемой недели, нужно отобразить события этой недели с помощью renderEvents
-    const findWeek = document.querySelector(".calendar__week");
-    const getTime = generateDay;
-    const getWeek = generateWeekRange()
-        .map(
-            (dayNumber) => `
-           <div 
-            class="calendar__day" 
-            data-day="${dayNumber}">"${getTime}"</div>`
-        )
-        .join("");
-    findWeek.innerHTML = getWeek;
+    // const findWeek = document.querySelector(".calendar__week");
+    // const getTime = generateDay();
+    // const getWeek = generateWeekRange()
+    //     .map(
+    //         (dayNumber) => `
+    //        <div
+    //         class="calendar__day"
+    //         data-day="${dayNumber}">${getTime}</div>`
+    //     )
+    //     .join("");
+    // findWeek.innerHTML = getWeek;
+    // console.log(getWeek);
 };
