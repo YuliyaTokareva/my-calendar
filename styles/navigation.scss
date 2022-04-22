@@ -56,9 +56,9 @@ button {
     letter-spacing: 0;
     margin-left: 20px;
 }
-// .fa-plus {
-//     content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath fill='%2334A853' d='M16 16v14h4V20z'%3E%3C/path%3E%3Cpath fill='%234285F4' d='M30 16H20l-4 4h14z'%3E%3C/path%3E%3Cpath fill='%23FBBC05' d='M6 16v4h10l4-4z'%3E%3C/path%3E%3Cpath fill='%23EA4335' d='M20 16V6h-4v14z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h36v36H0z'%3E%3C/path%3E%3C/svg%3E");
-// }
+.fa-plus {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath fill='%2334A853' d='M16 16v14h4V20z'%3E%3C/path%3E%3Cpath fill='%234285F4' d='M30 16H20l-4 4h14z'%3E%3C/path%3E%3Cpath fill='%23FBBC05' d='M6 16v4h10l4-4z'%3E%3C/path%3E%3Cpath fill='%23EA4335' d='M20 16V6h-4v14z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h36v36H0z'%3E%3C/path%3E%3C/svg%3E");
+}
 .calendar__header {
     display: flex;
 }
