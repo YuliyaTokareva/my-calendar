@@ -9,9 +9,26 @@ export const renderHeader = () => {
     // на основе полученного массива сформируйте разметку в виде строки - 7 дней (день недели и число в месяце)
     // полученную разметку вставить на страницу с помощью innerHTML в .calendar__header
     // в дата атрибуте каждой ячейки должно хранить для какого часа эта ячейка
-    const dateNow = new Date();
-    const startDate = dateNow.getDate();
-    console.log(generateWeekRange(dateNow));
+
+    // const startDate = dateNow.getDate();
+    const time = getItem(`displayedWeekStart`);
+    const arrWeek = generateWeekRange(time);
+    const findHeader = document.querySelector(".calendar__header");
+    const dayTheWeekArr = arrWeek.map((day) => [
+        daysOfWeek[day.getDay()],
+        day.getDate(),
+    ]);
+    const getDayInHeader = dayTheWeekArr
+        .map(
+            (dayNumber) => `
+           <div
+            class="calendar__day-label">
+            <span class ="day-label__day-name">${dayNumber[0]}</span> 
+            <span class ="day-label__day-name">${dayNumber[1]}</span>
+            </div>`
+        )
+        .join("");
+    findHeader.innerHTML = getDayInHeader;
 };
 
 // при клике на кнопку "Create" открыть модальное окно с формой для создания события

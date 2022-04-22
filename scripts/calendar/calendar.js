@@ -13,7 +13,7 @@ const generateDay = () => {
             (timeNumber) => `
           <div
           class="calendar__time-slot"
-          data-time="${timeNumber}">${timeNumber}</div>`
+          data-time="${timeNumber}"></div>`
         )
         .join("");
 };
@@ -24,16 +24,19 @@ export const renderWeek = () => {
     // массив дней, которые нужно отобразить, считаем ф-цией generateWeekRange на основе displayedWeekStart из storage
     // каждый день должен содержать в дата атрибуте порядковый номер дня в месяце
     // после того, как отрисовали всю сетку для отображаемой недели, нужно отобразить события этой недели с помощью renderEvents
-    // const findWeek = document.querySelector(".calendar__week");
-    // const getTime = generateDay();
-    // const getWeek = generateWeekRange()
-    //     .map(
-    //         (dayNumber) => `
-    //        <div
-    //         class="calendar__day"
-    //         data-day="${dayNumber}">${getTime}</div>`
-    //     )
-    //     .join("");
-    // findWeek.innerHTML = getWeek;
-    // console.log(getWeek);
+    const findWeek = document.querySelector(".calendar__week");
+    const time = getItem(`displayedWeekStart`);
+    const arrWeek = generateWeekRange(time);
+    const getTime = generateDay();
+    const dayTheWeekArr = arrWeek.map((day) => day.getDate());
+    const getWeek = dayTheWeekArr
+        .map(
+            (dayNumber) => `
+           <div
+            class="calendar__day"
+            data-day="${dayNumber}">${getTime}</div>`
+        )
+        .join("");
+    findWeek.innerHTML = getWeek;
+    // console.log(arrWeek.map((day) => day.getDate()));
 };
