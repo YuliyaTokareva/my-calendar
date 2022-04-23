@@ -24,7 +24,7 @@ export const renderHeader = () => {
            <div
             class="calendar__day-label">
             <span class ="day-label__day-name">${dayNumber[0]}</span> 
-            <span class ="day-label__day-name">${dayNumber[1]}</span>
+            <span class ="day-label__day-number">${dayNumber[1]}</span>
             </div>`
         )
         .join("");

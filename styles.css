@@ -8,12 +8,17 @@
 
 .button {
   height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
   border-radius: 8px;
   border: 1px solid #ccc;
   outline: none;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
+  text-transform: none;
+  opacity: 1;
+  color: #3c4043;
+  padding: 0;
 }
 
 .icon-button {
@@ -21,6 +26,22 @@
   border: none;
   cursor: pointer;
   background: transparent;
+}
+
+.create-event-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 20px 14px 15px;
+  height: 48px;
+  margin-left: 25px;
+  box-shadow: 0px 1px 2px 0px rgba(60, 64, 67, 0.1), 0px 1px 3px 1px rgba(60, 64, 67, 0.05);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 48px;
+}
+
+.create-event-btn__txt {
+  padding-left: 15px;
 }
 
 .modal {
@@ -58,6 +79,10 @@
   display: none;
 }
 
+.fa-plus {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath fill='%2334A853' d='M16 16v14h4V20z'%3E%3C/path%3E%3Cpath fill='%234285F4' d='M30 16H20l-4 4h14z'%3E%3C/path%3E%3Cpath fill='%23FBBC05' d='M6 16v4h10l4-4z'%3E%3C/path%3E%3Cpath fill='%23EA4335' d='M20 16V6h-4v14z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h36v36H0z'%3E%3C/path%3E%3C/svg%3E");
+}
+
 .header {
   padding: 8px;
   padding-top: 16px;
@@ -68,41 +93,12 @@
 .navigation {
   margin-left: 43px;
 }
-
 .navigation__nav-icon {
   width: 32px;
   height: 32px;
   display: inline-block;
   padding: 0;
 }
-
-button {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.25px;
-  text-transform: none;
-  opacity: 1;
-  color: #3c4043;
-  padding: 0;
-}
-
-.create-event-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 20px 14px 15px;
-  height: 48px;
-  margin-left: 25px;
-  box-shadow: 0px 1px 2px 0px rgba(60, 64, 67, 0.1), 0px 1px 3px 1px rgba(60, 64, 67, 0.05);
-  background-color: rgba(255, 255, 255, 0.5);
-  -webkit-border-radius: 48px;
-  border-radius: 48px;
-}
-
-.create-event-btn__txt {
-  padding-left: 15px;
-}
-
 .navigation__today-btn {
   background-color: transparent;
   border: 1px solid #dadce0;
@@ -110,7 +106,6 @@ button {
   height: 40px;
   margin-right: 20px;
 }
-
 .navigation__displayed-month {
   color: #3c4043;
   font-size: 22px;
@@ -119,17 +114,58 @@ button {
   margin-left: 20px;
 }
 
-.fa-plus {
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath fill='%2334A853' d='M16 16v14h4V20z'%3E%3C/path%3E%3Cpath fill='%234285F4' d='M30 16H20l-4 4h14z'%3E%3C/path%3E%3Cpath fill='%23FBBC05' d='M6 16v4h10l4-4z'%3E%3C/path%3E%3Cpath fill='%23EA4335' d='M20 16V6h-4v14z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h36v36H0z'%3E%3C/path%3E%3C/svg%3E");
+.day-label__day-name {
+  height: 32px;
+  line-height: 32px;
+  color: #70757a;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.day-label__day-number {
+  width: 46px;
+  height: 46px;
+  color: #70757a;
+  cursor: pointer;
+  font-size: 26px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 46px;
+  margin-top: -8px;
 }
 
 .calendar__header {
   display: flex;
 }
-
 .calendar__day-label {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  flex: 1 0 auto;
+  min-width: 81px;
+}
+.calendar__time-slot {
+  height: 60px;
+  border-top: 1px solid #dadce0;
+  flex-shrink: 0;
+}
+.calendar__day {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  min-width: 81px;
+  border-right: 1px solid #dadce0;
+}
+.calendar__week {
+  display: flex;
+}
+.calendar__body {
+  overflow-x: scroll;
+  height: 100vh;
 }
 
 * {
