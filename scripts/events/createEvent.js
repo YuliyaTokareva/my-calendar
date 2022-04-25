@@ -1,17 +1,22 @@
 import { getItem, setItem } from "../common/storage.js";
 import { renderEvents } from "./events.js";
 import { getDateTime } from "../common/time.utils.js";
-//import { closeModal } from "../common/modal.js";
+import { closeModal } from "../common/modal.js";
 
 const eventFormElem = document.querySelector(".event-form");
-const closeEventFormBtn = document.querySelector(".create-event__close-btn");
+const allEventInputsElem = document.querySelectorAll(".event-form__field");
+const modalCloceButtonElem = document.querySelector(".create-event__close-btn");
+const submitBtmElem = document.querySelector(".event-form__submit-btn");
 
 function clearEventForm() {
     // ф-ция должна очистить поля формы от значений
+    const clearInput = [...allEventInputsElem].forEach((el) => (el.value = ""));
 }
 
 function onCloseEventForm() {
-    // здесь нужно закрыть модальное окно и очистить форму
+    //здесь нужно закрыть модальное окно и очистить форму
+    clearEventForm();
+    closeModal();
 }
 
 function onCreateEvent(event) {
@@ -24,8 +29,16 @@ function onCreateEvent(event) {
     // полученное событие добавляем в массив событий, что хранится в storage
     // закрываем форму
     // и запускаем перерисовку событий с помощью renderEvents
+    const arr = [];
+    const clearInput = [...allEventInputsElem].forEach((el) =>
+        console.log(el.value)
+    );
+    console.log(arr);
 }
 
 export function initEventForm() {
     // подпишитесь на сабмит формы и на закрытие формы
 }
+
+modalCloceButtonElem.addEventListener("click", onCloseEventForm);
+submitBtmElem.addEventListener("click", onCreateEvent);
