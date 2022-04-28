@@ -1,6 +1,8 @@
 import { getItem, setItem } from "../common/storage.js";
 import shmoment from "../common/shmoment.js";
 import { openPopup, closePopup } from "../common/popup.js";
+import { storage, dateNow } from "../common/storage.js";
+import { generateWeekRange } from "../common/time.utils.js";
 
 const weekElem = document.querySelector(".calendar__week");
 const deleteEventBtn = document.querySelector(".delete-event-btn");
@@ -33,7 +35,6 @@ const createEventElement = (event) => {
 };
 
 calendarWeek.addEventListener("click", createEventElement);
-
 export const renderEvents = () => {
     // достаем из storage все события и дату понедельника отображаемой недели
     // фильтруем события, оставляем только те, что входят в текущую неделю
@@ -42,8 +43,21 @@ export const renderEvents = () => {
     // и вставляем туда событие
     // каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
     // не забудьте удалить с календаря старые события перед добавлением новых
-};
+    const mondayNow = getItem(`displayedWeekStart`);
+    const arrWeek = generateWeekRange(mondayNow);
 
+    const eventsFilter = [];
+    const allEventsToWeak = getItem(`events`).filter((events) => {
+        events.start === arrWeek;
+        // console.log(events.start === arrWeek);
+    });
+
+    //console.log([1, 2, 3].filter((el) => el === 1));
+    console.log(mondayNow);
+    console.log(storage);
+    // console.log(getStartOfWeek(dateNow));
+};
+renderEvents();
 function onDeleteEvent() {
     // достаем из storage массив событий и eventIdToDelete
     // удаляем из массива нужное событие и записываем в storage новый массив

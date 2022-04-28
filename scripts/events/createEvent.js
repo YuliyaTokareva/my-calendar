@@ -47,7 +47,7 @@ function onCreateEvent(event) {
 
 export function initEventForm() {
     // подпишитесь на сабмит формы и на закрытие формы
-    // onCreateEvent(event);
+
     submitBtmElem.addEventListener("click", onCreateEvent);
     console.log(storage);
 }

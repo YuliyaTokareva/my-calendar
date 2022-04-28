@@ -2,7 +2,6 @@ import { getItem } from "../common/storage.js";
 import { generateWeekRange } from "../common/time.utils.js";
 import { renderEvents } from "../events/events.js";
 import { createNumbersArray } from "../common/createNumbersArray.js";
-
 const generateDay = () => {
     // функция должна сгенерировать и вернуть разметку дня в виде строки
     // разметка состоит из 24 часовых временных слотов (.calendar__time-slot)
