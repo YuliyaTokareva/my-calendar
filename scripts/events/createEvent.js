@@ -4,7 +4,7 @@ import { getDateTime } from "../common/time.utils.js";
 import { closeModal } from "../common/modal.js";
 import { storage } from "../common/storage.js";
 
-const eventFormElem = document.querySelector(".event-form");
+export const eventFormElem = document.querySelector(".event-form");
 const allEventInputsElem = document.querySelectorAll(".event-form__field");
 const modalCloceButtonElem = document.querySelector(".create-event__close-btn");
 const submitBtmElem = document.querySelector(".event-form__submit-btn");
@@ -42,6 +42,7 @@ function onCreateEvent(event) {
     eventNew.end = getDateTime(formFields[1][1], formFields[3][1]);
     storage.events.push(eventNew);
     onCloseEventForm();
+    console.log(renderEvents());
     renderEvents();
 }
 

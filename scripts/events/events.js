@@ -3,10 +3,12 @@ import shmoment from "../common/shmoment.js";
 import { openPopup, closePopup } from "../common/popup.js";
 import { storage, dateNow } from "../common/storage.js";
 import { generateWeekRange } from "../common/time.utils.js";
+import { openModal } from "../common/modal.js";
+import { eventFormElem } from "../events/createEvent.js";
 
 const weekElem = document.querySelector(".calendar__week");
 const deleteEventBtn = document.querySelector(".delete-event-btn");
-
+const calendarTimeSlot = document.querySelector(".calendar__time-slot");
 const calendarWeek = document.querySelector(".calendar__week");
 function handleEventClick(event) {
     // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
@@ -16,6 +18,7 @@ function handleEventClick(event) {
 
 function removeEventsFromCalendar() {
     // ф-ция для удаления всех событий с календаря
+    calendarTimeSlot.innerHTML = "";
 }
 
 const createEventElement = (event) => {
@@ -23,14 +26,25 @@ const createEventElement = (event) => {
     // событие должно позиционироваться абсолютно внутри нужной ячейки времени внутри дня
     // нужно добавить id события в дата атрибут
     // здесь для создания DOM элемента события используйте document.createElement
+    openModal();
     const targetTime = event.target;
-    const idEvent = Math.floor(Math.random() * (4000456000 - 456000)) + 456000;
-    const addDuvEvent = document.createElement("div");
-    addDuvEvent.classList.add("event");
-    addDuvEvent.setAttribute("data-event-Id", `${idEvent}`);
-
-    addDuvEvent.innerText = "Text";
-    targetTime.prepend(addDuvEvent);
+    const addDivEvent = document.createElement("div");
+    addDivEvent.classList.add("event");
+    addDivEvent.setAttribute("data-event-Id", `${idEvent}`);
+    console.log(formFields);
+    // addDivEvent.innerText = `
+    //        <div
+    //         class="event__title">
+    //         ${formFields[0][1]}
+    //         </div>
+    //         <div
+    //         class="event__time">
+    //         ${getDateTime(
+    //             formFields[1][1],
+    //             formFields[2][1]
+    //         )} ' — ' ${getDateTime(formFields[1][1], formFields[3][1])}
+    //         </div>`;
+    targetTime.prepend(addDivEvent);
     console.log(event.target);
 };
 
@@ -43,21 +57,22 @@ export const renderEvents = () => {
     // и вставляем туда событие
     // каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
     // не забудьте удалить с календаря старые события перед добавлением новых
-    const mondayNow = getItem(`displayedWeekStart`);
-    const arrWeek = generateWeekRange(mondayNow);
+    const startDateTime = getItem(`displayedWeekStart`);
+    const arrWeek = generateWeekRange(startDateTime);
+    const endDateTime = arrWeek[6];
+    const eventArr = getItem(`events`);
 
-    const eventsFilter = [];
-    const allEventsToWeak = getItem(`events`).filter((events) => {
-        events.start === arrWeek;
-        // console.log(events.start === arrWeek);
+    const filterEvants = eventArr.filter((events) => {
+        events.start >= startDateTime && events.end < endDateTime;
+    });
+    filterEvants.forEach((element) => {
+        createEventElement(element);
     });
 
-    //console.log([1, 2, 3].filter((el) => el === 1));
-    console.log(mondayNow);
-    console.log(storage);
+    //console.log(filterEvants);
+    //console.log(endDateTime);
     // console.log(getStartOfWeek(dateNow));
 };
-renderEvents();
 function onDeleteEvent() {
     // достаем из storage массив событий и eventIdToDelete
     // удаляем из массива нужное событие и записываем в storage новый массив
