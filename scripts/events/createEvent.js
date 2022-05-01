@@ -42,8 +42,9 @@ function onCreateEvent(event) {
     eventNew.end = getDateTime(formFields[1][1], formFields[3][1]);
     storage.events.push(eventNew);
     onCloseEventForm();
-    console.log(renderEvents());
+
     renderEvents();
+    //console.log(renderEvents());
 }
 
 export function initEventForm() {

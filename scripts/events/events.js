@@ -26,29 +26,38 @@ const createEventElement = (event) => {
     // событие должно позиционироваться абсолютно внутри нужной ячейки времени внутри дня
     // нужно добавить id события в дата атрибут
     // здесь для создания DOM элемента события используйте document.createElement
-    openModal();
-    const targetTime = event.target;
+    const findDay = event.start.getDate();
+    const getHour = event.start.getHours();
+    const targetTime = document.querySelector(
+        `[data-day = "${findDay}"] div[data-time = "${getHour}"]`
+    );
+    const heightStyle =
+        event.end.getHours() * 60 +
+        event.end.getMinutes() -
+        (event.start.getHours() * 60 + event.start.getMinutes());
     const addDivEvent = document.createElement("div");
     addDivEvent.classList.add("event");
-    addDivEvent.setAttribute("data-event-Id", `${idEvent}`);
-    console.log(formFields);
-    // addDivEvent.innerText = `
-    //        <div
-    //         class="event__title">
-    //         ${formFields[0][1]}
-    //         </div>
-    //         <div
-    //         class="event__time">
-    //         ${getDateTime(
-    //             formFields[1][1],
-    //             formFields[2][1]
-    //         )} ' — ' ${getDateTime(formFields[1][1], formFields[3][1])}
-    //         </div>`;
+    addDivEvent.setAttribute("data-event-Id", `${event.id}`);
+    addDivEvent.setAttribute(
+        "style",
+        `top:${event.start.getMinutes()}px; height:${heightStyle}px`
+    );
+    addDivEvent.innerHTML = `
+           <div
+            class="event__title">
+            ${event.title}
+            </div>
+            <div
+            class="event__time">
+            ${event.start.getHours()} : ${event.start.getMinutes()}  —  ${event.end.getHours()}: ${event.end.getMinutes()}
+            
+            </div>`;
+
     targetTime.prepend(addDivEvent);
-    console.log(event.target);
+    //console.log(event.start.getDate());
 };
 
-calendarWeek.addEventListener("click", createEventElement);
+//calendarWeek.addEventListener("click", createEventElement);
 export const renderEvents = () => {
     // достаем из storage все события и дату понедельника отображаемой недели
     // фильтруем события, оставляем только те, что входят в текущую неделю
@@ -61,10 +70,13 @@ export const renderEvents = () => {
     const arrWeek = generateWeekRange(startDateTime);
     const endDateTime = arrWeek[6];
     const eventArr = getItem(`events`);
-
-    const filterEvants = eventArr.filter((events) => {
-        events.start >= startDateTime && events.end < endDateTime;
+    //console.log(eventArr);
+    const filterEvants = eventArr.filter((event) => {
+        return event.start >= startDateTime && event.end < endDateTime;
     });
+
+    // console.log(startDateTime);
+    // console.log(endDateTime);
     filterEvants.forEach((element) => {
         createEventElement(element);
     });
