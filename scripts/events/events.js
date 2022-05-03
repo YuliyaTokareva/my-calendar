@@ -8,17 +8,28 @@ import { eventFormElem } from "../events/createEvent.js";
 
 const weekElem = document.querySelector(".calendar__week");
 const deleteEventBtn = document.querySelector(".delete-event-btn");
-const calendarTimeSlot = document.querySelector(".calendar__time-slot");
-const calendarWeek = document.querySelector(".calendar__week");
+const calendarTimeSlot = document.querySelectorAll(`[data-event-id]`);
+//const calendarWeek = document.querySelector(".calendar__week");
 function handleEventClick(event) {
     // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
     // установите eventIdToDelete с id события в storage
-    // openPopup(event.clientX, event.clientY);
+    console.log(calendarTimeSlot);
+    openPopup(event.clientX, event.clientY);
 }
 
 function removeEventsFromCalendar() {
     // ф-ция для удаления всех событий с календаря
-    calendarTimeSlot.innerHTML = "";
+    const eventArr = getItem(`events`);
+    //const findIdOldEvents = eventArr.;
+    eventArr.forEach((element) => {
+        let findOldEvent = document.querySelector(
+            `div[data-event-id = "${element.id}"]`
+        );
+        if (element.length === 0) {
+            return;
+        }
+        // findOldEvent.innerHTML = "";
+    });
 }
 
 const createEventElement = (event) => {
@@ -54,7 +65,7 @@ const createEventElement = (event) => {
             </div>`;
 
     targetTime.prepend(addDivEvent);
-    //console.log(event.start.getDate());
+    console.log(calendarTimeSlot);
 };
 
 //calendarWeek.addEventListener("click", createEventElement);
@@ -75,9 +86,9 @@ export const renderEvents = () => {
         return event.start >= startDateTime && event.end < endDateTime;
     });
 
-    // console.log(startDateTime);
-    // console.log(endDateTime);
+    removeEventsFromCalendar();
     filterEvants.forEach((element) => {
+        removeEventsFromCalendar();
         createEventElement(element);
     });
 
@@ -85,6 +96,7 @@ export const renderEvents = () => {
     //console.log(endDateTime);
     // console.log(getStartOfWeek(dateNow));
 };
+console.log(calendarTimeSlot);
 function onDeleteEvent() {
     // достаем из storage массив событий и eventIdToDelete
     // удаляем из массива нужное событие и записываем в storage новый массив

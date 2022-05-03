@@ -152,6 +152,7 @@
   height: 60px;
   border-top: 1px solid #dadce0;
   flex-shrink: 0;
+  position: relative;
 }
 .calendar__day {
   display: flex;
@@ -170,19 +171,93 @@
 
 .modal__content {
   position: relative;
+  min-width: 448px;
+}
+
+.create-event {
+  display: flex;
+  flex-direction: column;
 }
 
 .create-event__close-btn {
   background: #fff;
   border: none;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 3px;
+  top: 1px;
   color: #5f6368;
   font-size: 20px;
   height: 44px;
   width: 44px;
   cursor: pointer;
+}
+
+.event-form {
+  margin-top: 22px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-form__time {
+  line-height: 20px;
+  color: #3c4043;
+  font-size: 14px;
+  padding-left: 8px;
+  padding-right: 8px;
+  letter-spacing: normal;
+}
+
+.event-form__field {
+  border: none;
+}
+
+input[type=text] {
+  font-size: 22px;
+  height: 28px;
+  margin: 8px 0 0 52px;
+}
+
+input:focus,
+textarea:focus {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #1a73e8;
+}
+
+textarea::placeholder {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.event-form__submit-btn {
+  background: #1a73e8;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  line-height: 36px;
+  border: none;
+  width: 122px;
+  display: block;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.event {
+  position: absolute;
+  width: 80%;
+  background: #c6dafc;
+  color: #7c899c;
+  border-radius: 4px;
+  z-index: 2;
+  font-size: 12px;
+  letter-spacing: 0.1px;
+  line-height: 15px;
+}
+.event__title {
+  font-weight: 600;
 }
 
 * {
