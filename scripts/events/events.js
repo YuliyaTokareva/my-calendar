@@ -13,23 +13,27 @@ const calendarTimeSlot = document.querySelectorAll(`[data-event-id]`);
 function handleEventClick(event) {
     // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
     // установите eventIdToDelete с id события в storage
-    console.log(calendarTimeSlot);
+
     openPopup(event.clientX, event.clientY);
 }
 
 function removeEventsFromCalendar() {
     // ф-ция для удаления всех событий с календаря
     const eventArr = getItem(`events`);
-    //const findIdOldEvents = eventArr.;
-    eventArr.forEach((element) => {
-        let findOldEvent = document.querySelector(
-            `div[data-event-id = "${element.id}"]`
-        );
-        if (element.length === 0) {
-            return;
-        }
-        // findOldEvent.innerHTML = "";
-    });
+    // if (eventArr.length === 1) {
+    //     return;
+    // }
+    // ..по айдишнику в массиве найти родителя и очистить его
+    // const findOldEvent = document.querySelector(".event");
+    // findOldEvent.remove();
+    // const findIdOldEvents = eventArr.forEach((element) => {
+    //     let findOldEvent = document.querySelector(
+    //         //`[data-event-id]=${element.id}`
+    //         ".calendar__time-slot"
+    //     );
+    //     //console.log(document.querySelector(`.event`));
+    //     findOldEvent.innerHTML = "";
+    // });
 }
 
 const createEventElement = (event) => {
@@ -65,7 +69,7 @@ const createEventElement = (event) => {
             </div>`;
 
     targetTime.prepend(addDivEvent);
-    console.log(calendarTimeSlot);
+    //console.log(calendarTimeSlot);
 };
 
 //calendarWeek.addEventListener("click", createEventElement);
@@ -88,7 +92,7 @@ export const renderEvents = () => {
 
     removeEventsFromCalendar();
     filterEvants.forEach((element) => {
-        removeEventsFromCalendar();
+        //removeEventsFromCalendar();
         createEventElement(element);
     });
 
@@ -96,7 +100,7 @@ export const renderEvents = () => {
     //console.log(endDateTime);
     // console.log(getStartOfWeek(dateNow));
 };
-console.log(calendarTimeSlot);
+//console.log(calendarTimeSlot);
 function onDeleteEvent() {
     // достаем из storage массив событий и eventIdToDelete
     // удаляем из массива нужное событие и записываем в storage новый массив
