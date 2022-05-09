@@ -12,21 +12,9 @@ const newWekIcon = document.querySelector(".fas");
 function renderCurrentMonth() {
     // отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
     // вставить в .navigation__displayed-month
-    // const dateEndWeak = getItem(`displayedWeekStart`).setDate(
-    //     getItem(`displayedWeekStart`).getDate() + 6
-    // );
-    // const monthStart = new Date(dateEndWeak);
-    // const monthEnd = getItem(`displayedWeekStart`);
-    // if (getDisplayedMonth(new Date(dateEndWeak)) === "May 2022") {
-    //     displayedMonthElem.innerHTML = `${getDisplayedMonth(
-    //         new Date(dateEndWeak)
-    //     )} - ${getDisplayedMonth(new Date(dateEndWeak))}`;
-    //     console.log(getDisplayedMonth(new Date(dateEndWeak)));
-    // }
-    // displayedMonthElem.innerHTML = `${getDisplayedMonth(
-    //     new Date(dateEndWeak)
-    // )}`;
-    // console.log(dateEndWeak);
+    displayedMonthElem.innerHTML = `${getDisplayedMonth(
+        getItem(`displayedWeekStart`)
+    )}`;
 }
 
 const onChangeWeek = (event) => {
@@ -35,7 +23,6 @@ const onChangeWeek = (event) => {
     const targetButton = event.target.getAttribute("data-direction");
     const targetButtonIcon =
         event.target.parentNode.getAttribute("data-direction");
-    console.log(targetButtonIcon);
     let dateToChange;
     if (targetButton === `next` || targetButtonIcon === `next`) {
         dateToChange = getItem(`displayedWeekStart`).setDate(
@@ -48,12 +35,10 @@ const onChangeWeek = (event) => {
         );
     }
 
-    console.log(dateToChange);
     setItem(`displayedWeekStart`, new Date(dateToChange));
     renderHeader();
     renderWeek();
     renderCurrentMonth();
-    console.log(getItem(`displayedWeekStart`));
 };
 
 export const initNavigation = () => {

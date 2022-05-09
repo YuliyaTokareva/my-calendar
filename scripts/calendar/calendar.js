@@ -35,5 +35,4 @@ export const renderWeek = () => {
         )
         .join("");
     findWeek.innerHTML = getWeek;
-    // console.log(arrWeek.map((day) => day.getDate()));
 };

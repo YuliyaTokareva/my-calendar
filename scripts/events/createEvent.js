@@ -42,16 +42,13 @@ function onCreateEvent(event) {
     eventNew.end = getDateTime(formFields[1][1], formFields[3][1]);
     storage.events.push(eventNew);
     onCloseEventForm();
-
     renderEvents();
-    //console.log(renderEvents());
 }
 
 export function initEventForm() {
     // подпишитесь на сабмит формы и на закрытие формы
 
     submitBtmElem.addEventListener("click", onCreateEvent);
-    console.log(storage);
 }
 
 modalCloceButtonElem.addEventListener("click", onCloseEventForm);
