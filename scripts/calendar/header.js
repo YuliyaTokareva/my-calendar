@@ -29,6 +29,7 @@ export const renderHeader = () => {
             </div>`
         )
         .join("");
+    console.log(dayTheWeekArr);
     findHeader.innerHTML = getDayInHeader;
 };
 

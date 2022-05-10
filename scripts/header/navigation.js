@@ -7,8 +7,10 @@ const navElem = document.querySelector(".navigation");
 const displayedMonthElem = document.querySelector(
     ".navigation__displayed-month"
 );
+const todayButton = document.querySelector(".navigation__today-btn");
 const newWek = document.querySelector(".navigation__nav-icon");
 const newWekIcon = document.querySelector(".fas");
+
 function renderCurrentMonth() {
     // отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
     // вставить в .navigation__displayed-month
@@ -45,7 +47,15 @@ export const initNavigation = () => {
     renderCurrentMonth();
     navElem.addEventListener("click", onChangeWeek);
 };
+function showToday() {
+    setItem("displayedWeekStart", new Date());
+    console.log(getItem(`displayedWeekStart`));
+    //renderHeader();
+    // console.log(renderHeader());
+    //renderCurrentMonth();
+}
 
+todayButton.addEventListener("click", showToday);
 //deleteEventBtn.addEventListener("click", onDeleteEvent);
 
 // newWek.addEventListener("click", onChangeWeek);
