@@ -30,14 +30,18 @@ const onChangeWeek = (event) => {
         dateToChange = getItem(`displayedWeekStart`).setDate(
             getItem(`displayedWeekStart`).getDate() + 7
         );
+        setItem(`displayedWeekStart`, new Date(dateToChange));
     }
     if (targetButton === `prev` || targetButtonIcon === `prev`) {
         dateToChange = getItem(`displayedWeekStart`).setDate(
             getItem(`displayedWeekStart`).getDate() - 7
         );
+        setItem(`displayedWeekStart`, new Date(dateToChange));
+    }
+    if (targetButton === `today`) {
+        setItem("displayedWeekStart", getStartOfWeek(new Date()));
     }
 
-    setItem(`displayedWeekStart`, new Date(dateToChange));
     renderHeader();
     renderWeek();
     renderCurrentMonth();
@@ -47,16 +51,3 @@ export const initNavigation = () => {
     renderCurrentMonth();
     navElem.addEventListener("click", onChangeWeek);
 };
-function showToday() {
-    setItem("displayedWeekStart", new Date());
-    console.log(getItem(`displayedWeekStart`));
-    //renderHeader();
-    // console.log(renderHeader());
-    //renderCurrentMonth();
-}
-
-todayButton.addEventListener("click", showToday);
-//deleteEventBtn.addEventListener("click", onDeleteEvent);
-
-// newWek.addEventListener("click", onChangeWeek);
-// newWekIcon.addEventListener("click", onChangeWeek);
